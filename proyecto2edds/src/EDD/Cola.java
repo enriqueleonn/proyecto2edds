@@ -47,4 +47,50 @@ public class Cola {
     public boolean colaVacia() {
         return this.cabeza == null;
     }
+    
+    public void enColar (Object dato) {
+        Nodo pNew = new Nodo (dato);
+        if (this.colaVacia()) {
+            this.setCabeza(pNew);
+            this.setCola(pNew);
+        }
+        else {
+            this.cola.setPnext(pNew);
+            this.setCola(pNew);
+        }
+        size++;
+    }
+    
+    public Object desEncolar(){
+        if (this.colaVacia()) {
+            Object quitar = this.cabeza.getDato();
+            this.setCabeza(null);
+            this.setCola(null);
+            size--;
+            return quitar;
+        }
+        
+        else {
+            Object quitar = this.cabeza.getDato();
+            this.setCabeza(this.cabeza.getPnext());
+            size--;
+            return quitar;
+        }
+    }
+    
+    public void destruir () {
+        cabeza = null;
+        cola = null;
+        size = 0;
+    }
+    
+    public void listar() {
+        Nodo aux = cabeza;
+        String pila = "COLA:\n";
+        while (aux != null) {
+            pila = pila + aux.getDato() + "\n";
+            aux = aux.getPnext();
+        }
+        System.out.println(pila);
+    }
 }
