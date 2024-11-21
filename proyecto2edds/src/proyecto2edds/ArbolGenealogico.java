@@ -9,10 +9,12 @@ import EDD.HashTable;
 
 /**
  *
+
  * @author eabdf
  */
 public class ArbolGenealogico {
     private String nombreLinaje;
+
     private Arbol arbol;
     private HashTable hashTable;
 
@@ -51,4 +53,5 @@ public class ArbolGenealogico {
         this.arbol = arbol;
         this.hashTable = hashTable;
     }
+
 }

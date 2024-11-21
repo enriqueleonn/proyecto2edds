@@ -92,24 +92,30 @@ public class HashTable {
         return resultado;
     }
 
+
     public Lista buscarTitulo(String titulo) {
+
         Lista resultado = new Lista();
         for (int i = 0; i < max; i++) {
             if (!tabla[i].isEmpty()) {
                 for (int j = 0; j < tabla[i].getSize(); j++) {
                     Persona personaActual = (Persona) tabla[i].getValor(j);
-                    if (personaActual.getTitulo().equalsIgnoreCase(titulo)) {
-                        resultado.InsertarFinal(personaActual);
+
+                    if (personaActual.getTitulo() != null) {
+                        if (personaActual.getTitulo().contains(titulo)) {
+                            resultado.InsertarFinal(personaActual);
+                        }
                     }
                 }
             }
         }
-
         return resultado;
     }
+   
 
     public void destruir() {
         for (int i = 0; i < max; i++) {
+
             tabla[i] = new Lista();
         }
     }
