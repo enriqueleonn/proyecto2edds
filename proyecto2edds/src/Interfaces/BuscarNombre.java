@@ -4,6 +4,10 @@
  */
 package Interfaces;
 
+import EDD.Lista;
+import static Interfaces.Inicio.arbolGenealogico;
+import proyecto2edds.Persona;
+
 /**
  *
  * @author Enrique León
@@ -15,6 +19,9 @@ public class BuscarNombre extends javax.swing.JFrame {
      */
     public BuscarNombre() {
         initComponents();
+        this.setVisible(true);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -26,21 +33,74 @@ public class BuscarNombre extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        buscarNombre = new javax.swing.JButton();
+        inputNombre = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        resultadoStr = new javax.swing.JTextArea();
+        volver = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addHierarchyListener(new java.awt.event.HierarchyListener() {
+            public void hierarchyChanged(java.awt.event.HierarchyEvent evt) {
+                formHierarchyChanged(evt);
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        buscarNombre.setText("buscar");
+        buscarNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarNombreActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, -1, -1));
+        jPanel1.add(inputNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 190, -1));
+
+        resultadoStr.setColumns(20);
+        resultadoStr.setRows(5);
+        jScrollPane1.setViewportView(resultadoStr);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 280, 120));
+
+        volver.setText("Volver");
+        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_formHierarchyChanged
+
+    }//GEN-LAST:event_formHierarchyChanged
+
+    private void buscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarNombreActionPerformed
+        String nombre = inputNombre.getText();
+        Lista resultados = arbolGenealogico.getHashTable().buscarNombre(nombre);
+
+        String[] nombresResultados = new String[resultados.getSize()];
+
+        for (int i = 0; i < resultados.getSize(); i++) {
+            Persona persona = (Persona) resultados.getValor(i);
+            if (persona.getMote() != null) {
+                nombresResultados[i] = persona.getMote();
+            } else {
+                nombresResultados[i] = persona.getNombre() + " " + persona.getNumeral();
+
+            }
+        }
+        String resultado = "";
+        for (int i = 0; i < nombresResultados.length; i++) {
+            int indice = i + 1;
+            resultado += indice + ": " + nombresResultados[i] + "\n";
+        }
+        resultadoStr.setText(resultado);
+
+
+    }//GEN-LAST:event_buscarNombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +138,11 @@ public class BuscarNombre extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buscarNombre;
+    private javax.swing.JTextField inputNombre;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea resultadoStr;
+    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }
