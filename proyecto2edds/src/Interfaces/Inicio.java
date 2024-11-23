@@ -58,12 +58,13 @@ public class Inicio extends javax.swing.JFrame {
                 empezarActionPerformed(evt);
             }
         });
-        jPanel1.add(empezar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
+        jPanel1.add(empezar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, -1, -1));
 
-        jLabel1.setText("Bienvenido");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        jLabel1.setText("Bienvenidos");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, 20));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 340));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -92,6 +93,7 @@ public class Inicio extends javax.swing.JFrame {
         }
 
         cargarJSON.getHashTable().mostrarTabla();
+        cargarJSON.getArbol().mostrarPorNiveles();
         arbolGenealogico.iniciar(cargarJSON.getArbol(), cargarJSON.getHashTable(), cargarJSON.getNombreLinaje());
 
         Menu menu = new Menu();
