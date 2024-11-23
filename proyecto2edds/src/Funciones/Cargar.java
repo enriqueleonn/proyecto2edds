@@ -70,6 +70,31 @@ public class Cargar {
 
     }
     
+    private void agregarMiembrosArbol(JsonObject miembroJson){
+        String nombre = miembroJson.keySet().iterator().next();
+        JsonArray atributosMiembro = miembroJson.getAsJsonArray(nombre);
+        
+        Persona nuevoMiembro = new Persona(nombre);
+        colocarAtributos(nuevoMiembro, atributosMiembro);
+        
+        if(arbol.isEmpty()){
+           arbol.iniciarlizarRaiz(nuevoMiembro);
+        }else{
+           if(nuevoMiembro.getPadre().contains(" of his name")){
+               String nombrePadre = nuevoMiembro.getPadre().replace(" of his name", "").replaceAll(",", "").trim();
+               nuevoMiembro.setPadre(nombrePadre);
+               
+               if(arbol.buscar(nombrePadre)!= null){
+                   arbol.insertar(arbol.buscar(nombrePadre), nuevoMiembro);
+               }    
+           }else{
+               if(arbol.buscar(nuevoMiembro.getPadre())!= null){ 
+                   arbol.insertar(arbol.buscar(nuevoMiembro.getPadre()), nuevoMiembro);
+               }
+           }
+        }
+    }
+    
     private void  agregarMiembroHashTable (JsonObject miembroJson){
         String nombre = miembroJson.keySet().iterator().next();
          JsonArray atributosMiembro = miembroJson.getAsJsonArray(nombre);
