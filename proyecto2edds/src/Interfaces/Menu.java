@@ -17,7 +17,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
-         this.setVisible(true);
+        this.setVisible(true);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.nombreLinajeMenu.setText(arbolGenealogico.getNombreLinaje());
@@ -34,8 +34,9 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         buscarNombre = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        buscarTitulo = new javax.swing.JButton();
         nombreLinajeMenu = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -48,15 +49,23 @@ public class Menu extends javax.swing.JFrame {
                 buscarNombreActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
+        jPanel1.add(buscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
 
-        jButton2.setText("Buscar  por titulo");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, -1, -1));
+        buscarTitulo.setText("Buscar por título");
+        buscarTitulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarTituloActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buscarTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, -1, -1));
 
         nombreLinajeMenu.setText("Nombre del Linaje");
-        jPanel1.add(nombreLinajeMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 120, -1));
+        jPanel1.add(nombreLinajeMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 120, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 400));
+        jLabel1.setText("Menu Principal");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -65,6 +74,11 @@ public class Menu extends javax.swing.JFrame {
         BuscarNombre buscarPorNombre = new BuscarNombre();
         this.dispose();
     }//GEN-LAST:event_buscarNombreActionPerformed
+
+    private void buscarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarTituloActionPerformed
+       BuscarTitulo buscarPorTitulo = new BuscarTitulo();
+       this.dispose();
+    }//GEN-LAST:event_buscarTituloActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,7 +117,8 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarNombre;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton buscarTitulo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nombreLinajeMenu;
     // End of variables declaration//GEN-END:variables

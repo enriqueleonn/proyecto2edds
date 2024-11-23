@@ -5,7 +5,9 @@
 package Interfaces;
 
 import EDD.Lista;
+import Funciones.Validar;
 import static Interfaces.Inicio.arbolGenealogico;
+import javax.swing.JOptionPane;
 import proyecto2edds.Persona;
 
 /**
@@ -14,9 +16,9 @@ import proyecto2edds.Persona;
  */
 public class BuscarNombre extends javax.swing.JFrame {
 
-    /**
-     * Creates new form BuscarNombre
-     */
+    private Validar validar = new Validar();
+    private String[] resultadoBusqueda;
+    
     public BuscarNombre() {
         initComponents();
         this.setVisible(true);
@@ -39,6 +41,11 @@ public class BuscarNombre extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         resultadoStr = new javax.swing.JTextArea();
         volver = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        inputIndice = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        verDatallePersona = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addHierarchyListener(new java.awt.event.HierarchyListener() {
@@ -56,8 +63,8 @@ public class BuscarNombre extends javax.swing.JFrame {
                 buscarNombreActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, -1, -1));
-        jPanel1.add(inputNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 190, -1));
+        jPanel1.add(buscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, -1, -1));
+        jPanel1.add(inputNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 190, -1));
 
         resultadoStr.setColumns(20);
         resultadoStr.setRows(5);
@@ -66,9 +73,33 @@ public class BuscarNombre extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 280, 120));
 
         volver.setText("Volver");
-        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, -1, -1));
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
+            }
+        });
+        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 340));
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel1.setText("Buscar nombre");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
+
+        jLabel2.setText("Resultados de la búsqueda:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+        jPanel1.add(inputIndice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 280, -1));
+
+        jLabel3.setText("Ingrese el número asociado a la persona para acceder a su info");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
+
+        verDatallePersona.setText("Ver detalle");
+        verDatallePersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verDatallePersonaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(verDatallePersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -98,9 +129,27 @@ public class BuscarNombre extends javax.swing.JFrame {
             resultado += indice + ": " + nombresResultados[i] + "\n";
         }
         resultadoStr.setText(resultado);
-
-
     }//GEN-LAST:event_buscarNombreActionPerformed
+
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+         Menu menu = new Menu();
+         this.dispose();
+    }//GEN-LAST:event_volverActionPerformed
+
+    private void verDatallePersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verDatallePersonaActionPerformed
+        String indiceStr = inputIndice.getText();
+        if(validar.ValidarNumeros(indiceStr) != -1){
+            int indice = validar.ValidarNumeros(indiceStr) - 1;
+            if(validar.validarIndice(resultadoBusqueda.length-1, 0, indice)){
+                String clave = resultadoBusqueda[indice];
+                JOptionPane.showMessageDialog(null, arbolGenealogico.getHashTable().buscar(clave));  
+            }else{
+                JOptionPane.showMessageDialog(null, "El numero esta fuera del indice");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe ingresar un numero.");
+        } 
+    }//GEN-LAST:event_verDatallePersonaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,10 +188,15 @@ public class BuscarNombre extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarNombre;
+    private javax.swing.JTextField inputIndice;
     private javax.swing.JTextField inputNombre;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea resultadoStr;
+    private javax.swing.JButton verDatallePersona;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }
