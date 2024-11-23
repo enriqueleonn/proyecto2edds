@@ -9,10 +9,11 @@ import EDD.HashTable;
 
 /**
  *
-
+ *
  * @author eabdf
  */
 public class ArbolGenealogico {
+
     private String nombreLinaje;
 
     private Arbol arbol;
@@ -47,11 +48,17 @@ public class ArbolGenealogico {
     public void setHashTable(HashTable hashTable) {
         this.hashTable = hashTable;
     }
-    
-    public void iniciar(Arbol arbol, HashTable hashTable, String nombre){
+
+    public void iniciar(Arbol arbol, HashTable hashTable, String nombre) {
         this.nombreLinaje = nombre;
         this.arbol = arbol;
         this.hashTable = hashTable;
+    }
+
+    public void destruir() {
+        this.nombreLinaje = null;
+        this.arbol = new Arbol();
+        this.hashTable.destruir();
     }
 
 }
