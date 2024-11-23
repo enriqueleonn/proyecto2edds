@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import EDD.Arbol;
 import EDD.Lista;
 import Funciones.Validar;
 import static Interfaces.Inicio.arbolGenealogico;
@@ -112,23 +113,33 @@ public class BuscarNombre extends javax.swing.JFrame {
         String nombre = inputNombre.getText();
         Lista resultados = arbolGenealogico.getHashTable().buscarNombre(nombre);
 
-        String[] nombresResultados = new String[resultados.getSize()];
+        if (!resultados.isEmpty()) {
+            String[] nombresResultados = new String[resultados.getSize()];
 
-        for (int i = 0; i < resultados.getSize(); i++) {
-            Persona persona = (Persona) resultados.getValor(i);
-            if (persona.getMote() != null) {
-                nombresResultados[i] = persona.getMote();
-            } else {
-                nombresResultados[i] = persona.getNombre() + " " + persona.getNumeral();
-
+            for (int i = 0; i < resultados.getSize(); i++) {
+                Persona persona = (Persona) resultados.getValor(i);
+                if (persona.getMote() != null) {
+                    nombresResultados[i] = persona.getMote();
+                } else {
+                    nombresResultados[i] = persona.getNombre() + " " + persona.getNumeral();
+                }
             }
+
+            resultadoBusqueda = nombresResultados;
+
+            String resultado = "";
+
+            for (int i = 0; i < nombresResultados.length; i++) {
+                int indice = i + 1;
+                resultado += indice + ": " + nombresResultados[i] + "\n";
+            }
+
+            resultadoStr.setText(resultado);
+        }else{
+            JOptionPane.showMessageDialog(null, "No se encontraron coincidencia con el nombre buscado");
         }
-        String resultado = "";
-        for (int i = 0; i < nombresResultados.length; i++) {
-            int indice = i + 1;
-            resultado += indice + ": " + nombresResultados[i] + "\n";
-        }
-        resultadoStr.setText(resultado);
+        
+        inputNombre.setText("");
     }//GEN-LAST:event_buscarNombreActionPerformed
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
@@ -138,17 +149,22 @@ public class BuscarNombre extends javax.swing.JFrame {
 
     private void verDatallePersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verDatallePersonaActionPerformed
         String indiceStr = inputIndice.getText();
-        if(validar.ValidarNumeros(indiceStr) != -1){
+        if (validar.ValidarNumeros(indiceStr) != -1) {
             int indice = validar.ValidarNumeros(indiceStr) - 1;
-            if(validar.validarIndice(resultadoBusqueda.length-1, 0, indice)){
+            if (validar.validarIndice(resultadoBusqueda.length - 1, 0, indice)) {
                 String clave = resultadoBusqueda[indice];
-                JOptionPane.showMessageDialog(null, arbolGenealogico.getHashTable().buscar(clave));  
-            }else{
+                
+                Arbol descendencia = new Arbol();
+                
+                descendencia.setRoot(arbolGenealogico.getArbol().buscar(clave));
+                descendencia.mostrarPorNiveles();
+                
+            } else {
                 JOptionPane.showMessageDialog(null, "El numero esta fuera del indice");
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Debe ingresar un numero.");
-        } 
+        }
     }//GEN-LAST:event_verDatallePersonaActionPerformed
 
     /**
