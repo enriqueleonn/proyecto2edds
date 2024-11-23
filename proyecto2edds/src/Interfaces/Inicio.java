@@ -91,13 +91,22 @@ public class Inicio extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "No se ha seleccionado ningún archivo.");
         }
+        
+        if (cargarJSON.isPadresNoExisten() && cargarJSON.isPersonasRepetidas()) {
+            JOptionPane.showMessageDialog(null, "Error. Hay padres que no existen y Personas repetidas en el JSON");
+        } else if (!cargarJSON.isPadresNoExisten() && cargarJSON.isPersonasRepetidas()) {
+            JOptionPane.showMessageDialog(null, "Error. Hay Personas repetidas en el JSON");
+        } else if (cargarJSON.isPadresNoExisten() && !cargarJSON.isPersonasRepetidas()) {
+            JOptionPane.showMessageDialog(null, "Error. Hay padres que no existen");
+        } else {
 
-        cargarJSON.getHashTable().mostrarTabla();
-        cargarJSON.getArbol().mostrarPorNiveles();
-        arbolGenealogico.iniciar(cargarJSON.getArbol(), cargarJSON.getHashTable(), cargarJSON.getNombreLinaje());
+            cargarJSON.setPadresNoExisten(false);
+            cargarJSON.setPersonasRepetidas(false);
+            arbolGenealogico.iniciar(cargarJSON.getArbol(), cargarJSON.getHashTable(), cargarJSON.getNombreLinaje());
 
-        Menu menu = new Menu();
-        this.dispose();
+            Menu menu = new Menu();
+            this.dispose();
+        }
     }//GEN-LAST:event_empezarActionPerformed
 
     /**

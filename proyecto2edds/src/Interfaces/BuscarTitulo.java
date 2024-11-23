@@ -99,27 +99,31 @@ public class BuscarTitulo extends javax.swing.JFrame {
         String titulo = inputTitulo.getText();
         Lista resultados = arbolGenealogico.getHashTable().buscarTitulo(titulo);
         
-        String[] nombresTitulo = new String[resultados.getSize()];
-        
-        for (int i = 0; i < resultados.getSize(); i++) {
-            Persona persona = (Persona) resultados.getValor(i);
-            if(persona.getMote()!=null){
-               nombresTitulo[i] = persona.getMote();
-            }else{
-                nombresTitulo[i] = persona.getNombre() + " " + persona.getNumeral();
+        if (!resultados.isEmpty()) {
+            String[] nombresTitulo = new String[resultados.getSize()];
+
+            for (int i = 0; i < resultados.getSize(); i++) {
+                Persona persona = (Persona) resultados.getValor(i);
+                if (persona.getMote() != null) {
+                    nombresTitulo[i] = persona.getMote();
+                } else {
+                    nombresTitulo[i] = persona.getNombre() + " " + persona.getNumeral();
+                }
             }
+
+            resultadoBusqueda = nombresTitulo;
+
+            String resultado = "";
+
+            for (int i = 0; i < nombresTitulo.length; i++) {
+                int indice = i + 1;
+                resultado += indice + ": " + nombresTitulo[i] + "\n";
+            }
+
+            resultadosStr.setText(resultado);
+        }else{
+            JOptionPane.showMessageDialog(null, "No se encontraron coincidencia con el titulo buscado.");
         }
-        
-        resultadoBusqueda = nombresTitulo;
-        
-        String resultado = "";
-        
-        for (int i = 0; i < nombresTitulo.length; i++) {
-            int indice = i+1;
-            resultado += indice +": " + nombresTitulo[i] + "\n";
-        }
-        
-        resultadosStr.setText(resultado);
     }//GEN-LAST:event_buscarActionPerformed
 
     private void verDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verDetallesActionPerformed
