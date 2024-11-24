@@ -4,6 +4,7 @@
  */
 package EDD;
 
+import javax.swing.JOptionPane;
 import proyecto2edds.Persona;
 
 /**
@@ -172,5 +173,26 @@ public class Arbol {
         }
 
         return ancestros;
+    }
+
+    public void mostrarInfo(String id) {
+        NodoArbol nodo = (NodoArbol) this.buscar(id); // Buscar el nodo por ID
+        if (nodo != null) {
+            Persona persona = (Persona) nodo.getDato();
+            if (persona != null) {
+                JOptionPane.showMessageDialog(null,
+                        persona.toString(), // Utiliza el método toString para mostrar la información
+                        "Información de " + persona.getNombre(),
+                        JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "No se encontró el nodo con ID: " + id,
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+
     }
 }
