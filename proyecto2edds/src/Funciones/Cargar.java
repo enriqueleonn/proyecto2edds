@@ -88,6 +88,15 @@ public class Cargar {
             }
         }
 
+        for (String nombreLinajeActual : json.keySet()) {
+            nombreLinaje = nombreLinajeActual;
+            JsonArray miembrosLinaje = json.getAsJsonArray(nombreLinaje);
+            for (JsonElement miembro : miembrosLinaje) {
+                JsonObject miembroJson = miembro.getAsJsonObject();
+                agregarMiembrosArbol(miembroJson);
+            }
+        }
+
     }
     
     
@@ -98,22 +107,30 @@ public class Cargar {
 
         Persona nuevoMiembro = new Persona(nombre);
         colocarAtributos(nuevoMiembro, atributosMiembro);
-
-        if (arbol.isEmpty()) {
-            arbol.iniciarlizarRaiz(nuevoMiembro);
-        } else {
-            if (nuevoMiembro.getPadre().contains(" of his name")) {
-                String nombrePadre = nuevoMiembro.getPadre().replace(" of his name", "").replaceAll(",", "").trim();
-                nuevoMiembro.setPadre(nombrePadre);
-
-                if (arbol.buscar(nombrePadre) != null) {
-                    arbol.insertar(arbol.buscar(nombrePadre), nuevoMiembro);
-                }
+        
+        if (this.arbol.buscar(nuevoMiembro.nombreUnico()) == null) {
+            if (arbol.isEmpty()) {
+                arbol.iniciarlizarRaiz(nuevoMiembro);
             } else {
-                if (arbol.buscar(nuevoMiembro.getPadre()) != null) {
-                    arbol.insertar(arbol.buscar(nuevoMiembro.getPadre()), nuevoMiembro);
+                if (nuevoMiembro.getPadre().contains("of his name")) {
+                    String nombrePadre = nuevoMiembro.getPadre().replace("of his name", "").replaceAll(",", "").trim();
+                    nuevoMiembro.setPadre(nombrePadre);
+
+                    if (arbol.buscar(nombrePadre) != null) {
+                        arbol.insertar(arbol.buscar(nombrePadre), nuevoMiembro);
+                    } else {
+                        this.setPadresNoExisten(true);
+                    }
+                } else {
+                    if (arbol.buscar(nuevoMiembro.getPadre()) != null) {
+                        arbol.insertar(arbol.buscar(nuevoMiembro.getPadre()), nuevoMiembro);
+                    } else {
+                        this.setPadresNoExisten(true);
+                    }
                 }
             }
+        }else{
+           this.setPersonasRepetidas(true);
         }
     }
 

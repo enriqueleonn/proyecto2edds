@@ -5,6 +5,7 @@
 package Interfaces;
 
 import EDD.Lista;
+import Funciones.MostrarAntepasados;
 import Funciones.Validar;
 import static Interfaces.Inicio.arbolGenealogico;
 import javax.swing.JOptionPane;
@@ -80,6 +81,11 @@ public class Antepasados extends javax.swing.JFrame {
         jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, -1, -1));
 
         volver.setText("volver");
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
+            }
+        });
         jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, -1, -1));
 
         inputIndex.addActionListener(new java.awt.event.ActionListener() {
@@ -142,10 +148,14 @@ public class Antepasados extends javax.swing.JFrame {
             if (validar.validarIndice(resultadoBusqueda.length - 1, 0, indice)) {
                 String clave = resultadoBusqueda[indice];
                 
-                //System.out.println(arbolGenealogico.getArbol().buscar(clave).getDato());
                 
                 Lista antepasados = arbolGenealogico.getArbol().antepasados(arbolGenealogico.getArbol().buscar(clave));
                 
+                System.setProperty("org.graphstream.ui", "swing");
+                MostrarAntepasados mostrar = new MostrarAntepasados(antepasados);
+                mostrar.setVisible(true);
+                
+                this.dispose();
                 for (int i = 0; i < antepasados.getSize(); i++) {
                     Persona persona = (Persona) antepasados.getValor(i);
                     System.out.println(persona.toString() + "\n");
@@ -162,6 +172,11 @@ public class Antepasados extends javax.swing.JFrame {
     private void inputIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIndexActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputIndexActionPerformed
+
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+        Menu menu = new Menu();
+        this.dispose();
+    }//GEN-LAST:event_volverActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import Funciones.MostrarArbol;
 import static Interfaces.Inicio.arbolGenealogico;
 
 /**
@@ -135,7 +136,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_antepasadosActionPerformed
 
     private void verRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verRegistrosActionPerformed
-        // TODO add your handling code here:
+        System.setProperty("org.graphstream.ui", "swing");
+
+        MostrarArbol mostrar = new MostrarArbol(arbolGenealogico.getArbol());
+        mostrar.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_verRegistrosActionPerformed
 
     /**

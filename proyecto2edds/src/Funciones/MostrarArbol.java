@@ -5,93 +5,136 @@
 package Funciones;
 
 import EDD.Arbol;
-import EDD.Cola;
 import EDD.NodoArbol;
+import Interfaces.Menu;
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import proyecto2edds.Persona;
 import org.graphstream.graph.Graph;
+import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.swing_viewer.ViewPanel;
+import org.graphstream.ui.view.Viewer;
 
 /**
  *
  * @author Enrique León
  */
-public class MostrarArbol {
-     public static Graph construirGrafoDesdeArbol(Arbol arbol, String nombreGrafo, String estilo) {
-        Graph grafo = new SingleGraph(nombreGrafo);
+public class MostrarArbol extends JFrame {
+    private Arbol arbol;
+    private Viewer visor;
+    private ViewPanel panelVista;
 
-        if (arbol.isEmpty()) {
-            System.out.println("El árbol está vacío.");
-            return grafo;
-        }
-
-        
-        NodoArbol nodoRaiz = arbol.getRoot();
-        Persona personaRaiz = (Persona) nodoRaiz.getDato();
-        String idRaiz = personaRaiz.nombreUnico() + "_" + nodoRaiz.hashCode();
-
-       
-        if (grafo.getNode(idRaiz) == null) {
-            grafo.addNode(idRaiz).setAttribute("ui.label", personaRaiz.nombreUnico());
-            grafo.getNode(idRaiz).setAttribute("persona", personaRaiz);
-        }
-
-        
-        agregarNodoYSubarbol(nodoRaiz, idRaiz, grafo);
-
-       
-        if (estilo != null && !estilo.isEmpty()) {
-            grafo.setAttribute("ui.stylesheet", estilo);
-        } else {
-            
-            grafo.setAttribute("ui.stylesheet", "node { fill-color: green; size: 20px; text-alignment: center; }");
-        }
-        grafo.setAttribute("ui.quality");
-        grafo.setAttribute("ui.antialias");
-
-        return grafo;
+    public MostrarArbol(Arbol arbol) {
+        this.arbol = arbol;
+        configurarInterfaz();
+        inicializarVisor();
+        agregarBotonRegresar();
     }
 
-   
-    private static void agregarNodoYSubarbol(NodoArbol nodoActual, String padreId, Graph grafo) {
-        if (nodoActual == null || nodoActual.getDato() == null) {
+    private void configurarInterfaz() {
+        setTitle("Visualizador de Árbol");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+    }
+
+    private void inicializarVisor() {
+        Graph arbolVisual = new SingleGraph("Árbol");
+        construirArbol(arbolVisual);
+
+        visor = arbolVisual.display(false);
+        visor.enableAutoLayout();
+
+        agregarEventosNodos(arbolVisual);
+
+        if (panelVista == null) {
+            panelVista = (ViewPanel) visor.getDefaultView();
+            add(panelVista, BorderLayout.CENTER);
+        }
+    }
+
+    private void agregarEventosNodos(Graph arbolVisual) {
+        for (Node node : arbolVisual) {
+            
+            node.setAttribute("ui.label", node.getId());
+
+            NodoArbol nodoArbol = arbol.buscar(node.getId());
+            if (nodoArbol != null) {
+                node.setAttribute("persona", nodoArbol.getDato());
+            }
+
+            node.setAttribute("ui.style", "fill-color: green; size: 20px;");
+
+            node.setAttribute("ui.clicked", (Runnable) () -> {
+                Persona persona = (Persona) node.getAttribute("persona");
+                if (persona != null) {
+                    JOptionPane.showMessageDialog(null,
+                            persona.toString(),
+                            "Detalles de la Persona",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
+        }
+    }
+
+    private void construirArbol(Graph arbolVisual) {
+        if (arbol.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El árbol está vacío.");
             return;
         }
 
-        
-        Cola colaNodos = new Cola();
-        Cola colaPadres = new Cola();
+        agregarNodoYSubarbol(arbol.getRoot(), null, arbolVisual);
 
-        colaNodos.enColar(nodoActual);
-        colaPadres.enColar(padreId);
+        arbolVisual.setAttribute("ui.stylesheet",
+                "node { text-size: 14px; size: 30px; text-alignment: center; fill-color: green; }"
+                + "edge { size: 2px; }"
+        );
+    }
 
-        while (!colaNodos.colaVacia()) {
-            NodoArbol nodo = (NodoArbol) colaNodos.desEncolar();
-            String padre = (String) colaPadres.desEncolar();
+    private void agregarNodoYSubarbol(NodoArbol nodoActual, String padreId, Graph arbolVisual) {
+        Persona persona = (Persona) nodoActual.getDato();
+        String nodoId = persona.nombreUnico();
 
-            
-            Persona persona = (Persona) nodo.getDato();
-            String nodoId = persona.nombreUnico() + "_" + nodo.hashCode(); 
-
-            
-            if (grafo.getNode(nodoId) == null) {
-                grafo.addNode(nodoId).setAttribute("ui.label", persona.nombreUnico());
-                grafo.getNode(nodoId).setAttribute("persona", persona);
-            }
-
-            
-            if (padre != null) {
-                String edgeId = padre + "-" + nodoId;
-                if (grafo.getEdge(edgeId) == null) {
-                    grafo.addEdge(edgeId, padre, nodoId);
-                }
-            }
-
-            
-            for (int i = 0; i < nodo.getHijos().getSize(); i++) {
-                NodoArbol hijo = (NodoArbol) nodo.getHijos().getValor(i);
-                colaNodos.enColar(hijo);
-                colaPadres.enColar(nodoId);
-            }
+        if (arbolVisual.getNode(nodoId) == null) {
+            Node node = arbolVisual.addNode(nodoId);
+            node.setAttribute("ui.label", persona.nombreUnico());
+            node.setAttribute("persona", persona); 
         }
+
+        if (padreId != null && arbolVisual.getEdge(padreId + "-" + nodoId) == null) {
+            arbolVisual.addEdge(padreId + "-" + nodoId, padreId, nodoId);
+        }
+
+        for (int i = 0; i < nodoActual.getHijos().getSize(); i++) {
+            NodoArbol hijo = (NodoArbol) nodoActual.getHijos().getValor(i);
+            agregarNodoYSubarbol(hijo, nodoId, arbolVisual);
+        }
+    }
+
+    private void agregarBotonRegresar() {
+        JButton botonRegresar = new JButton("Regresar");
+        botonRegresar.addActionListener(e -> {
+            cerrarVisor();
+            dispose();
+            Menu menuPrincipal = new Menu();
+            menuPrincipal.setVisible(true);
+        });
+        add(botonRegresar, BorderLayout.SOUTH);
+    }
+
+    private void cerrarVisor() {
+        if (visor != null) {
+            visor.disableAutoLayout();
+            visor.close();
+        }
+        if (panelVista != null) {
+            remove(panelVista);
+            panelVista = null;
+        }
+
+        Menu menu = new Menu();
     }
 }
