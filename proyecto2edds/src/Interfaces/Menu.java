@@ -119,7 +119,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_buscarTituloActionPerformed
 
     private void listarGeneracionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarGeneracionesActionPerformed
-   
+        ListarGeneraciones listaGeneracion = new ListarGeneraciones();
+        this.dispose();
     }//GEN-LAST:event_listarGeneracionesActionPerformed
 
     private void cargarLinajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarLinajeActionPerformed
@@ -129,7 +130,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_cargarLinajeActionPerformed
 
     private void antepasadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_antepasadosActionPerformed
-  
+    Antepasados antepasados = new Antepasados();
+        this.dispose();
     }//GEN-LAST:event_antepasadosActionPerformed
 
     private void verRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verRegistrosActionPerformed
