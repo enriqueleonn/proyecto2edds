@@ -5,6 +5,7 @@
 package Interfaces;
 
 import Funciones.Cargar;
+import Funciones.MostrarArbol;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
@@ -91,7 +92,7 @@ public class Inicio extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "No se ha seleccionado ningún archivo.");
         }
-        
+
         if (cargarJSON.isPadresNoExisten() && cargarJSON.isPersonasRepetidas()) {
             JOptionPane.showMessageDialog(null, "Error. Hay padres que no existen y Personas repetidas en el JSON");
         } else if (!cargarJSON.isPadresNoExisten() && cargarJSON.isPersonasRepetidas()) {
@@ -102,10 +103,23 @@ public class Inicio extends javax.swing.JFrame {
 
             cargarJSON.setPadresNoExisten(false);
             cargarJSON.setPersonasRepetidas(false);
+
             arbolGenealogico.iniciar(cargarJSON.getArbol(), cargarJSON.getHashTable(), cargarJSON.getNombreLinaje());
 
-            Menu menu = new Menu();
+            // Estilo opcional
+            //String estilo = "node { fill-color: yellow; size: 30px; text-alignment: center; }";
+
+            // Construir grafo desde el árbol
+            //Graph grafo = MostrarArbol.construirGrafoDesdeArbol(arbolGenealogico.getArbol(), "Árbol Genealógico", estilo);
+
+            // Usar la clase Clicks para hacer los nodos interactivos
+            System.setProperty("org.graphstream.ui", "swing");
+            //Clicks visualizador = new Clicks(grafo, arbolGenealogico.getArbol());
+
+            MostrarArbol mostrar = new MostrarArbol(arbolGenealogico.getArbol());
+            mostrar.setVisible(true);
             this.dispose();
+
         }
     }//GEN-LAST:event_empezarActionPerformed
 

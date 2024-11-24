@@ -148,7 +148,6 @@ public class Antepasados extends javax.swing.JFrame {
             if (validar.validarIndice(resultadoBusqueda.length - 1, 0, indice)) {
                 String clave = resultadoBusqueda[indice];
                 
-                //System.out.println(arbolGenealogico.getArbol().buscar(clave).getDato());
                 
                 Lista antepasados = arbolGenealogico.getArbol().antepasados(arbolGenealogico.getArbol().buscar(clave));
                 
@@ -175,7 +174,8 @@ public class Antepasados extends javax.swing.JFrame {
     }//GEN-LAST:event_inputIndexActionPerformed
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
-        // TODO add your handling code here:
+        Menu menu = new Menu();
+        this.dispose();
     }//GEN-LAST:event_volverActionPerformed
 
     /**
