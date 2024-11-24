@@ -4,17 +4,34 @@
  */
 package Interfaces;
 
+import Funciones.Cargar;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import proyecto2edds.ArbolGenealogico;
+
 /**
  *
  * @author Enrique León
  */
 public class Inicio extends javax.swing.JFrame {
 
+    public static ArbolGenealogico arbolGenealogico = new ArbolGenealogico();
+
+    private Cargar cargarJSON = new Cargar();
+
     /**
      * Creates new form Inicio
      */
     public Inicio() {
         initComponents();
+        this.setResizable(false);
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -26,21 +43,71 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        empezar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        empezar.setText("Empezar");
+        empezar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empezarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(empezar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        jLabel1.setText("Bienvenidos");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, 20));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void empezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empezarActionPerformed
+        JFileChooser fc = new JFileChooser();
+
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos JSON (*.json)", "json");
+
+        fc.setFileFilter(filtro);
+
+        int seleccion = fc.showOpenDialog(this);
+
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+
+            File fichero = fc.getSelectedFile();
+
+            try {
+                cargarJSON.cargar(fichero.getAbsolutePath());
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado ningún archivo.");
+        }
+        
+        if (cargarJSON.isPadresNoExisten() && cargarJSON.isPersonasRepetidas()) {
+            JOptionPane.showMessageDialog(null, "Error. Hay padres que no existen y Personas repetidas en el JSON");
+        } else if (!cargarJSON.isPadresNoExisten() && cargarJSON.isPersonasRepetidas()) {
+            JOptionPane.showMessageDialog(null, "Error. Hay Personas repetidas en el JSON");
+        } else if (cargarJSON.isPadresNoExisten() && !cargarJSON.isPersonasRepetidas()) {
+            JOptionPane.showMessageDialog(null, "Error. Hay padres que no existen");
+        } else {
+
+            cargarJSON.setPadresNoExisten(false);
+            cargarJSON.setPersonasRepetidas(false);
+            arbolGenealogico.iniciar(cargarJSON.getArbol(), cargarJSON.getHashTable(), cargarJSON.getNombreLinaje());
+
+            Menu menu = new Menu();
+            this.dispose();
+        }
+    }//GEN-LAST:event_empezarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +145,8 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton empezar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

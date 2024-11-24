@@ -4,9 +4,11 @@
  */
 package Interfaces;
 
+import static Interfaces.Inicio.arbolGenealogico;
+
 /**
  *
- * @author Enrique León
+ * @author eabdf
  */
 public class Menu extends javax.swing.JFrame {
 
@@ -15,6 +17,10 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        this.setVisible(true);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.nombreLinajeMenu.setText(arbolGenealogico.getNombreLinaje());
     }
 
     /**
@@ -26,21 +32,109 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        buscarNombre = new javax.swing.JButton();
+        buscarTitulo = new javax.swing.JButton();
+        nombreLinajeMenu = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        listarGeneraciones = new javax.swing.JButton();
+        cargarLinaje = new javax.swing.JButton();
+        antepasados = new javax.swing.JButton();
+        verRegistros = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        buscarNombre.setText("Buscar por nombre");
+        buscarNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarNombreActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+
+        buscarTitulo.setText("Buscar por título");
+        buscarTitulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarTituloActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buscarTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
+
+        nombreLinajeMenu.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        nombreLinajeMenu.setText("Nombre del Linaje");
+        jPanel1.add(nombreLinajeMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 240, -1));
+
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        jLabel1.setText("Menu Principal");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+
+        listarGeneraciones.setText("Generaciones");
+        listarGeneraciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listarGeneracionesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(listarGeneraciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
+
+        cargarLinaje.setText("Cargar linaje");
+        cargarLinaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarLinajeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cargarLinaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, -1, -1));
+
+        antepasados.setText("Antepasados");
+        antepasados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                antepasadosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(antepasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
+
+        verRegistros.setText("Ver registros");
+        verRegistros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verRegistrosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(verRegistros, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarNombreActionPerformed
+        BuscarNombre buscarPorNombre = new BuscarNombre();
+        this.dispose();
+    }//GEN-LAST:event_buscarNombreActionPerformed
+
+    private void buscarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarTituloActionPerformed
+       BuscarTitulo buscarPorTitulo = new BuscarTitulo();
+       this.dispose();
+    }//GEN-LAST:event_buscarTituloActionPerformed
+
+    private void listarGeneracionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarGeneracionesActionPerformed
+   
+    }//GEN-LAST:event_listarGeneracionesActionPerformed
+
+    private void cargarLinajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarLinajeActionPerformed
+        arbolGenealogico.destruir();
+        Inicio inicio = new Inicio();
+        this.dispose();
+    }//GEN-LAST:event_cargarLinajeActionPerformed
+
+    private void antepasadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_antepasadosActionPerformed
+  
+    }//GEN-LAST:event_antepasadosActionPerformed
+
+    private void verRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verRegistrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_verRegistrosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +172,14 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton antepasados;
+    private javax.swing.JButton buscarNombre;
+    private javax.swing.JButton buscarTitulo;
+    private javax.swing.JButton cargarLinaje;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton listarGeneraciones;
+    private javax.swing.JLabel nombreLinajeMenu;
+    private javax.swing.JButton verRegistros;
     // End of variables declaration//GEN-END:variables
 }

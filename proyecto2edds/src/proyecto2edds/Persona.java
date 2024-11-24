@@ -9,6 +9,7 @@ package proyecto2edds;
  * @author jorge
  */
 public class Persona {
+
     private String nombre;
     private String numeral;
     private String padre;
@@ -122,20 +123,23 @@ public class Persona {
     public void setComentMuerte(String comentMuerte) {
         this.comentMuerte = comentMuerte;
     }
-    
-    public String nombreUnico(){
-        if(this.mote == null){
+
+    public String nombreUnico() {
+        if (this.mote == null) {
             return this.getNombre() + "" + this.getNumeral();
         }
-        
+
         return this.mote;
     }
-    
+
+    public String nombreNumeral() {
+        return this.getNombre() + " " + this.getNumeral();
+    }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-    
+
         sb.append("\nNombre=").append(nombre);
         sb.append(", \nNumeral=").append(numeral);
         sb.append(", \nPadre=").append(padre);
@@ -147,9 +151,8 @@ public class Persona {
         sb.append(", \nColorCabello=").append(colorCabello);
         sb.append(", \nComentVida=").append(comentVida);
         sb.append(", \nComentMuerte=").append(comentMuerte);
-       
+
         return sb.toString();
     }
-    
-    
+
 }
