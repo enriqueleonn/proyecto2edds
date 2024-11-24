@@ -30,6 +30,8 @@ public class Cargar {
         this.arbol = new Arbol();
         this.hashTable = new HashTable(100);
         this.nombreLinaje = null;
+        this.personasRepetidas=false;
+        this.padresNoExisten=false;
     }
 
     public Arbol getArbol() {

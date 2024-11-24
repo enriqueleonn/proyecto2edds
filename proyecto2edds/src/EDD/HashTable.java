@@ -4,6 +4,7 @@
  */
 package EDD;
 
+import javax.swing.JOptionPane;
 import proyecto2edds.Persona;
 
 /**
@@ -149,4 +150,21 @@ public class HashTable {
         }
         System.out.println(tablaStr);
     }
+
+    public void mostrarInfo(String id) {
+        Persona persona = (Persona) this.buscar(id); // Buscar el nodo por ID
+        if (persona != null) {
+            JOptionPane.showMessageDialog(null,
+                    persona.toString(), // Utiliza el método toString para mostrar la información
+                    "Información de " + persona.getNombre(),
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "No se encontró el nodo con ID: " + id,
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
 }
