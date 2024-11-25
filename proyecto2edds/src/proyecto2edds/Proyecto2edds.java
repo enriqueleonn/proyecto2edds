@@ -16,7 +16,7 @@ public class Proyecto2edds {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Inicio inicio = new Inicio(); 
+       Inicio inicio = new Inicio(); 
     }
     
 }

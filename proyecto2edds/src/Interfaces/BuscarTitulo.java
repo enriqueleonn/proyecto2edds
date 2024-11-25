@@ -49,48 +49,54 @@ public class BuscarTitulo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jLabel1.setText("Buscar por título");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
-        jPanel1.add(inputTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 250, -1));
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 26)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel1.setText("Buscar por Título");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
+        jPanel1.add(inputTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 320, -1));
 
+        buscar.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         buscar.setText("Buscar");
         buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarActionPerformed(evt);
             }
         });
-        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, -1, -1));
+        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, -1, -1));
 
         resultadosStr.setColumns(20);
         resultadosStr.setRows(5);
         jScrollPane1.setViewportView(resultadosStr);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 250, 120));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 300, 130));
 
-        jLabel2.setText("Ingrese el número asociado a la persona ara ver más detalles:");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        jLabel2.setText("Ingrese el número asociado a la persona para ver más detalles:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, -1));
-        jPanel1.add(inputIndice, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 260, -1));
+        jPanel1.add(inputIndice, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 360, -1));
 
+        volver.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         volver.setText("Volver");
         volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverActionPerformed(evt);
             }
         });
-        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, -1, -1));
+        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, -1, -1));
 
+        verDetalles.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         verDetalles.setText("Ver detalles");
         verDetalles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 verDetallesActionPerformed(evt);
             }
         });
-        jPanel1.add(verDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
+        jPanel1.add(verDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 410));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -123,16 +129,16 @@ public class BuscarTitulo extends javax.swing.JFrame {
 
                 resultadosStr.setText(resultado);
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontraron coincidencia con el titulo buscado.");
+                JOptionPane.showMessageDialog(null, "No se encontró coincidencia con el título buscado.");
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "El input no puede estar vacio");
+            JOptionPane.showMessageDialog(null, "El input no puede estar vacío");
         }
     }//GEN-LAST:event_buscarActionPerformed
 
     private void verDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verDetallesActionPerformed
-       if (resultadoBusqueda != null || resultadoBusqueda[0] != null) {
+       if (resultadoBusqueda != null && resultadoBusqueda[0] != null) {
             if (!inputIndice.getText().isEmpty() && !"".equals(inputIndice.getText())) {
                 String indiceStr = inputIndice.getText();
                 if (validar.ValidarNumeros(indiceStr) != -1) {
@@ -141,18 +147,17 @@ public class BuscarTitulo extends javax.swing.JFrame {
                         String clave = resultadoBusqueda[indice];
                         JOptionPane.showMessageDialog(null, arbolGenealogico.getHashTable().buscar(clave));
                     } else {
-                        JOptionPane.showMessageDialog(null, "El numero esta fuera del indice");
+                        JOptionPane.showMessageDialog(null, "El número está fuera del índice");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Debe ingresar un numero.");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar un número.");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "El input no puede estar vacio");
+                JOptionPane.showMessageDialog(null, "El input no puede estar vacío");
             }
         }else{
             JOptionPane.showMessageDialog(null, "No hay resultados para ver detalles");
-        }
-                            
+        }                    
     }//GEN-LAST:event_verDetallesActionPerformed
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
