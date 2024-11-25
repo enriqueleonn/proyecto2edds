@@ -23,6 +23,7 @@ import org.graphstream.ui.view.Viewer;
  * @author Enrique León
  */
 public class MostrarArbol extends JFrame {
+
     private Arbol arbol;
     private Viewer visor;
     private ViewPanel panelVista;
@@ -58,7 +59,7 @@ public class MostrarArbol extends JFrame {
 
     private void agregarEventosNodos(Graph arbolVisual) {
         for (Node node : arbolVisual) {
-            
+
             node.setAttribute("ui.label", node.getId());
 
             NodoArbol nodoArbol = arbol.buscar(node.getId());
@@ -101,7 +102,7 @@ public class MostrarArbol extends JFrame {
         if (arbolVisual.getNode(nodoId) == null) {
             Node node = arbolVisual.addNode(nodoId);
             node.setAttribute("ui.label", persona.nombreUnico());
-            node.setAttribute("persona", persona); 
+            node.setAttribute("persona", persona);
         }
 
         if (padreId != null && arbolVisual.getEdge(padreId + "-" + nodoId) == null) {

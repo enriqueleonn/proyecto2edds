@@ -116,7 +116,6 @@ public class HashTable {
             if (!tabla[i].isEmpty()) {
                 for (int j = 0; j < tabla[i].getSize(); j++) {
                     Persona personaActual = (Persona) tabla[i].getValor(j);
-
                     if (personaActual.getTitulo() != null) {
                         if (personaActual.getTitulo().contains(titulo)) {
                             resultado.InsertarFinal(personaActual);

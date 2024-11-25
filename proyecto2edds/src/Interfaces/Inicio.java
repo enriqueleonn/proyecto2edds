@@ -106,15 +106,8 @@ public class Inicio extends javax.swing.JFrame {
 
             arbolGenealogico.iniciar(cargarJSON.getArbol(), cargarJSON.getHashTable(), cargarJSON.getNombreLinaje());
 
-            // Estilo opcional
-            //String estilo = "node { fill-color: yellow; size: 30px; text-alignment: center; }";
-
-            // Construir grafo desde el árbol
-            //Graph grafo = MostrarArbol.construirGrafoDesdeArbol(arbolGenealogico.getArbol(), "Árbol Genealógico", estilo);
-
-            // Usar la clase Clicks para hacer los nodos interactivos
             System.setProperty("org.graphstream.ui", "swing");
-            //Clicks visualizador = new Clicks(grafo, arbolGenealogico.getArbol());
+           
 
             MostrarArbol mostrar = new MostrarArbol(arbolGenealogico.getArbol());
             mostrar.setVisible(true);

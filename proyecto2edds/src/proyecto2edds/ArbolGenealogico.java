@@ -15,7 +15,6 @@ import EDD.HashTable;
 public class ArbolGenealogico {
 
     private String nombreLinaje;
-
     private Arbol arbol;
     private HashTable hashTable;
 

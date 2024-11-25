@@ -22,7 +22,7 @@ import proyecto2edds.Persona;
  * @author Enrique León
  */
 public class MostrarAntepasados extends JFrame {
-        private Lista antepasados;
+    private Lista antepasados;
     private Viewer visor;
     private ViewPanel panelVista;
 
