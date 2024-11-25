@@ -19,7 +19,9 @@ import org.graphstream.ui.swing_viewer.ViewPanel;
 import org.graphstream.ui.view.Viewer;
 
 /**
- *
+ * La clase MostrarArbol es una ventana gráfica que visualiza
+ * un árbol genealógico utilizando un grafo.
+ * 
  * @author Enrique León
  */
 public class MostrarArbol extends JFrame {
@@ -28,20 +30,29 @@ public class MostrarArbol extends JFrame {
     private Viewer visor;
     private ViewPanel panelVista;
 
+    /**
+     * Constructor que inicializa la ventana con el árbol a mostrar.
+     * 
+     * @param arbol El árbol genealógico a visualizar.
+     */
     public MostrarArbol(Arbol arbol) {
         this.arbol = arbol;
         configurarInterfaz();
         inicializarVisor();
         agregarBotonRegresar();
     }
-
+    /**
+     * Configura la interfaz de la ventana.
+     */
     private void configurarInterfaz() {
         setTitle("Visualizador de Árbol");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
     }
-
+    /**
+     * Inicializa el visor del árbol.
+     */
     private void inicializarVisor() {
         Graph arbolVisual = new SingleGraph("Árbol");
         construirArbol(arbolVisual);
@@ -56,7 +67,11 @@ public class MostrarArbol extends JFrame {
             add(panelVista, BorderLayout.CENTER);
         }
     }
-
+     /**
+     * Agrega eventos a los nodos del árbol para mostrar detalles de la persona.
+     * 
+     * @param arbolVisual El grafo del árbol.
+     */
     private void agregarEventosNodos(Graph arbolVisual) {
         for (Node node : arbolVisual) {
 
@@ -80,7 +95,11 @@ public class MostrarArbol extends JFrame {
             });
         }
     }
-
+    /**
+     * Construye el árbol visual a partir de la estructura de datos.
+     * 
+     * @param arbolVisual El grafo a construir.
+     */
     private void construirArbol(Graph arbolVisual) {
         if (arbol.isEmpty()) {
             JOptionPane.showMessageDialog(this, "El árbol está vacío.");
@@ -94,7 +113,13 @@ public class MostrarArbol extends JFrame {
                 + "edge { size: 2px; }"
         );
     }
-
+    /**
+     * Agrega un nodo y sus subárboles al grafo.
+     * 
+     * @param nodoActual  El nodo actual del árbol.
+     * @param padreId     El ID del nodo padre.
+     * @param arbolVisual El grafo del árbol.
+     */
     private void agregarNodoYSubarbol(NodoArbol nodoActual, String padreId, Graph arbolVisual) {
         Persona persona = (Persona) nodoActual.getDato();
         String nodoId = persona.nombreUnico();
@@ -114,7 +139,9 @@ public class MostrarArbol extends JFrame {
             agregarNodoYSubarbol(hijo, nodoId, arbolVisual);
         }
     }
-
+    /**
+     * Agrega un botón para regresar al menú principal.
+     */
     private void agregarBotonRegresar() {
         JButton botonRegresar = new JButton("Regresar");
         botonRegresar.addActionListener(e -> {
@@ -125,7 +152,9 @@ public class MostrarArbol extends JFrame {
         });
         add(botonRegresar, BorderLayout.SOUTH);
     }
-
+    /**
+     * Cierra el visor y libera recursos.
+     */
     private void cerrarVisor() {
         if (visor != null) {
             visor.disableAutoLayout();
