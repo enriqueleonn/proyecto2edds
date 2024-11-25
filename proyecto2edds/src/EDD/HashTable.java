@@ -8,14 +8,23 @@ import javax.swing.JOptionPane;
 import proyecto2edds.Persona;
 
 /**
- *
+ * La clase HashTable implementa una tabla hash para almacenar objetos
+ * utilizando listas encadenadas para manejar colisiones.
+ * 
  * @author Enrique León
  */
+
+
 public class HashTable {
 
     private Lista[] tabla;
     private int max;
 
+     /**
+     * Constructor que inicializa la tabla hash con un tamaño máximo.
+     * 
+     * @param max El tamaño máximo de la tabla.
+     */
     public HashTable(int max) {
         this.max = max;
         this.tabla = new Lista[max];
@@ -45,6 +54,12 @@ public class HashTable {
         return Math.abs(key.hashCode()) % max;
     }
 
+     /**
+     * Inserta un nuevo valor asociado a una clave en la tabla.
+     * 
+     * @param key   La clave del valor a insertar.
+     * @param value El valor a insertar.
+     */
     public void insertar(Object key, Object value) {
         int index = this.getIndex(key);
         Lista listaIndex = tabla[index];
@@ -53,7 +68,13 @@ public class HashTable {
             listaIndex.InsertarFinal(value);
         }
     }
-
+    
+   /**
+     * Busca un objeto en la tabla hash por su clave.
+     * 
+     * @param clave La clave del objeto a buscar.
+     * @return El objeto encontrado o null si no existe.
+     */
     public Object buscar(Object clave) {
         int index = this.getIndex(clave);
         Lista listaIndex = tabla[index];
@@ -69,6 +90,12 @@ public class HashTable {
         return null;
     }
 
+       /**
+     * Busca personas en la tabla por un nombre parcial.
+     * 
+     * @param nombre El nombre a buscar.
+     * @return Una lista de personas que coinciden con el nombre.
+     */
     public Lista buscarNombre(String nombre) {
         Lista resultado = new Lista();
         for (int i = 0; i < max; i++) {
@@ -93,6 +120,12 @@ public class HashTable {
         return resultado;
     }
 
+      /**
+     * Busca personas en la tabla por el nombre exacto.
+     * 
+     * @param nombre El nombre a buscar.
+     * @return Una lista de personas que coinciden con el nombre.
+     */
     public Lista buscarNombre2(String nombre) {
         Lista resultado = new Lista();
         for (int i = 0; i < max; i++) {
@@ -108,7 +141,13 @@ public class HashTable {
 
         return resultado;
     }
-
+    
+    /**
+     * Busca personas en la tabla por su título.
+     * 
+     * @param titulo El título a buscar.
+     * @return Una lista de personas que coinciden con el título.
+     */
     public Lista buscarTitulo(String titulo) {
 
         Lista resultado = new Lista();
@@ -133,7 +172,9 @@ public class HashTable {
             tabla[i] = new Lista();
         }
     }
-
+  /**
+     * Muestra el contenido de la tabla hash en la consola.
+     */
     public void mostrarTabla() {
         String tablaStr = "HashTable:\n";
         for (int i = 0; i < max; i++) {
@@ -149,7 +190,12 @@ public class HashTable {
         }
         System.out.println(tablaStr);
     }
-
+    
+  /**
+     * Muestra la información de una persona basada en su ID.
+     * 
+     * @param id El ID de la persona a mostrar.
+     */
     public void mostrarInfo(String id) {
         Persona persona = (Persona) this.buscar(id); 
         if (persona != null) {

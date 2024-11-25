@@ -8,12 +8,18 @@ import javax.swing.JOptionPane;
 import proyecto2edds.Persona;
 
 /**
- *
+ * La clase Arbol representa una estructura de árbol que permite almacenar nodos 
+ * y realizar diversas operaciones sobre ellos, como inserción, búsqueda y 
+ * visualización de nodos por niveles.
  * @author Enrique León
  */
 public class Arbol {
 
     private NodoArbol root;
+    
+    /**
+     * Constructor que inicializa la raíz del árbol como nula.
+     */
 
     public Arbol() {
         this.root = null;
@@ -30,18 +36,35 @@ public class Arbol {
     public boolean isEmpty() {
         return root == null;
     }
-
+    
+ /**
+     * Inicializa la raíz del árbol con un nuevo nodo.
+     * 
+     * @param dato El dato para el nuevo nodo raíz.
+     */
     public void iniciarlizarRaiz(Object dato) {
         NodoArbol rootNueva = new NodoArbol(dato);
         this.setRoot(rootNueva);
     }
 
+    /**
+     * Inserta un nuevo nodo como hijo de un nodo padre.
+     * 
+     * @param padre El nodo padre.
+     * @param dato  El dato del nuevo nodo.
+     */
     public void insertar(NodoArbol padre, Object dato) {
         NodoArbol hijo = new NodoArbol(dato);
         hijo.setPadre(padre);
         padre.agregarHijo(hijo);
     }
-
+    
+ /**
+     * Busca un nodo por su nombre único.
+     * 
+     * @param nombreUnico El nombre único a buscar.
+     * @return El nodo encontrado o null si no existe.
+     */
     public NodoArbol buscar(String nombreUnico) {
         if (!this.isEmpty()) {
             Cola cola = new Cola();
@@ -71,7 +94,10 @@ public class Arbol {
         }
         return null;
     }
-
+    
+    /**
+     * Muestra los nodos del árbol por niveles.
+     */
     public void mostrarPorNiveles() {
         if (!this.isEmpty()) {
             String arbolStr = "Arbol General:\n";
@@ -97,7 +123,12 @@ public class Arbol {
             System.out.println(arbolStr);
         }
     }
-
+    
+   /**
+     * Calcula el nivel máximo del árbol.
+     * 
+     * @return El nivel máximo.
+     */
     public int nivelMaximo() {
         if (this.isEmpty()) {
             return 0;
@@ -126,7 +157,13 @@ public class Arbol {
 
         return max;
     }
-
+    
+ /**
+     * Lista las personas en un nivel específico.
+     * 
+     * @param nivel El nivel a listar.
+     * @return Una lista de personas en el nivel especificado o null si está vacío.
+     */
     public Lista listarNivel(int nivel) {
         Lista personasNivel = new Lista();
         if (this.isEmpty()) {
@@ -160,7 +197,13 @@ public class Arbol {
         return personasNivel;
 
     }
-
+    
+  /**
+     * Obtiene la lista de antepasados de un nodo dado.
+     * 
+     * @param nodo El nodo del cual se desean obtener los antepasados.
+     * @return Una lista de antepasados o null si el nodo es nulo.
+     */
     public Lista antepasados(NodoArbol nodo) {
         if (nodo == null) {
             return null;
@@ -177,7 +220,12 @@ public class Arbol {
 
         return ancestros;
     }
-
+    
+   /**
+     * Muestra la información de un nodo basado en su ID.
+     * 
+     * @param id ID del nodo a buscar.
+     */
     public void mostrarInfo(String id) {
         NodoArbol nodo = (NodoArbol) this.buscar(id); 
         if (nodo != null) {

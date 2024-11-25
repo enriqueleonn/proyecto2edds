@@ -15,7 +15,8 @@ import java.io.FileReader;
 import proyecto2edds.Persona;
 
 /**
- *
+ * La clase Cargar se encarga de cargar datos de un archivo JSON
+ * y organizarlos en una estructura de árbol y una tabla hash.
  * @author Enrique León
  */
 public class Cargar {
@@ -25,7 +26,9 @@ public class Cargar {
     private String nombreLinaje;
     private boolean padresNoExisten;
     private boolean personasRepetidas;
-
+    /**
+     * Constructor que inicializa el árbol y la tabla hash.
+     */
     public Cargar() {
         this.arbol = new Arbol();
         this.hashTable = new HashTable(100);
@@ -33,7 +36,11 @@ public class Cargar {
         this.personasRepetidas = false;
         this.padresNoExisten = false;
     }
-
+    /**
+     * Obtiene el árbol de miembros.
+     * 
+     * @return El árbol.
+     */
     public Arbol getArbol() {
         return arbol;
     }
@@ -41,11 +48,19 @@ public class Cargar {
     public void setArbol(Arbol arbol) {
         this.arbol = arbol;
     }
-
+    /**
+     * Obtiene la tabla hash de miembros.
+     * 
+     * @return La tabla hash.
+     */
     public HashTable getHashTable() {
         return hashTable;
     }
-
+    /**
+     * Establece la tabla hash de miembros.
+     * 
+     * @param hashTable La nueva tabla hash.
+     */
     public void setHashTable(HashTable hashTable) {
         this.hashTable = hashTable;
     }
@@ -53,7 +68,11 @@ public class Cargar {
     public String getNombreLinaje() {
         return nombreLinaje;
     }
-
+    /**
+     * Establece el nombre del linaje.
+     * 
+     * @param nombreLinaje El nuevo nombre del linaje.
+     */
     public void setNombreLinaje(String nombreLinaje) {
         this.nombreLinaje = nombreLinaje;
     }
@@ -61,7 +80,11 @@ public class Cargar {
     public boolean isPadresNoExisten() {
         return padresNoExisten;
     }
-
+    /**
+     * Establece el estado de padres no existentes.
+     * 
+     * @param padresNoExisten El nuevo estado.
+     */
     public void setPadresNoExisten(boolean padresNoExisten) {
         this.padresNoExisten = padresNoExisten;
     }
@@ -73,7 +96,12 @@ public class Cargar {
     public void setPersonasRepetidas(boolean personasRepetidas) {
         this.personasRepetidas = personasRepetidas;
     }
-
+    /**
+     * Carga los datos desde un archivo JSON en la estructura de árbol y tabla hash.
+     * 
+     * @param ruta La ruta del archivo JSON.
+     * @throws FileNotFoundException Si el archivo no se encuentra.
+     */
     public void cargar(String ruta) throws FileNotFoundException {
         FileReader lectorArchivo = new FileReader(ruta);
         Gson gson = new Gson();
@@ -98,7 +126,11 @@ public class Cargar {
         }
 
     }
-
+     /**
+     * Agrega un miembro al árbol a partir de un objeto JSON.
+     * 
+     * @param miembroJson El objeto JSON del miembro.
+     */
     private void agregarMiembrosArbol(JsonObject miembroJson) {
         String nombre = miembroJson.keySet().iterator().next();
         JsonArray atributosMiembro = miembroJson.getAsJsonArray(nombre);
@@ -140,7 +172,11 @@ public class Cargar {
         colocarAtributos(nuevoMiembro, atributosMiembro);
         this.hashTable.insertar(nuevoMiembro.nombreUnico(), nuevoMiembro);
     }
-
+    /**
+     * Agrega un miembro al hashtable a partir de un objeto JSON.
+     * 
+     * @param miembroJson El objeto JSON del miembro.
+     */
     private void colocarAtributos(Persona nuevoMiembro, JsonArray atributosMiembro) {
         for (JsonElement atributoElemento : atributosMiembro) {
             JsonObject atributo = atributoElemento.getAsJsonObject();

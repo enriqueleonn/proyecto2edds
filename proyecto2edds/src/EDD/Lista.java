@@ -7,7 +7,8 @@ package EDD;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * * La clase Lista implementa una lista enlazada simple para almacenar objetos.
+ * Permite realizar operaciones como insertar, eliminar y buscar elementos.
  * @author Enrique León
  */
 public class Lista {
@@ -15,6 +16,9 @@ public class Lista {
     private Nodo pFirst;
     private int size;
     
+        /**
+     * Constructor que inicializa la lista vacía.
+     */
     public Lista() {
         this.pFirst = null;
         this.size = 0;
@@ -44,7 +48,11 @@ public class Lista {
         pFirst = null;
         size = 0;
     }
-    
+       /**
+     * Inserta un nuevo elemento al final de la lista.
+     * 
+     * @param dato El dato a insertar.
+     */
     public void InsertarFinal (Object dato) {
         Nodo pNew = new Nodo (dato);
         if (isEmpty()) {
@@ -59,7 +67,9 @@ public class Lista {
         }
         size++;
     }
-    
+      /**
+     * Muestra los elementos de la lista en un cuadro de diálogo.
+     */
     public void mostrar(){
         if (!isEmpty()) {
             Nodo aux = pFirst;
@@ -100,7 +110,12 @@ public class Lista {
             size --;
         }  
     }
-    
+      /**
+     * Busca un elemento en la lista.
+     * 
+     * @param referencia El objeto a buscar.
+     * @return true si se encontró el objeto, false en caso contrario.
+     */
     public boolean buscar(Object referencia){
         Nodo aux = pFirst;
         boolean encontrado = false;
@@ -114,7 +129,12 @@ public class Lista {
         }
         return encontrado;
     }
-    
+     /**
+     * Inserta un nuevo elemento en una posición específica de la lista.
+     * 
+     * @param posicion La posición donde insertar el nuevo elemento.
+     * @param valor El valor a insertar.
+     */
     public void insertarPorPosicion(int posicion, Object valor){
         if(posicion>=0 && posicion<size){
             Nodo nuevo = new Nodo(valor);
@@ -162,6 +182,12 @@ public class Lista {
         return null;
     }
     
+       /**
+     * Obtiene el nodo en una posición específica.
+     * 
+     * @param posicion La posición del nodo.
+     * @return El nodo en la posición especificada o null si la posición es inválida.
+     */
     public Nodo getNodo(int posicion){
 
         if(posicion>=0 && posicion<size){
@@ -178,7 +204,11 @@ public class Lista {
         }
         return null;
     }
-    
+      /**
+     * Transforma la lista en una representación de cadena.
+     * 
+     * @return Una cadena que representa los elementos de la lista.
+     */
     public String transformar(){
         if (!isEmpty()) {
             

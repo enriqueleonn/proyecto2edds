@@ -4,8 +4,10 @@
  */
 package EDD;
 
-/**
- *
+/*
+ * La clase Cola representa una estructura de datos tipo cola (FIFO).
+ * Permite realizar operaciones de encolar, desencolar y listar elementos.
+ * 
  * @author Enrique León
  */
 public class Cola {
@@ -14,12 +16,20 @@ public class Cola {
     private Nodo cola; 
     private int size;
     
+     /**
+     * Constructor que inicializa la cola como vacía.
+     */
     public Cola(){
         this.cabeza = null;
         this.cola = null;
         this.size = 0;
     }
     
+     /**
+     * Obtiene el nodo cabeza de la cola.
+     * 
+     * @return El nodo cabeza.
+     */
     public Nodo getCabeza() {
         return cabeza;
     }
@@ -48,6 +58,11 @@ public class Cola {
         return this.cabeza == null;
     }
     
+     /**
+     * Agrega un nuevo elemento al final de la cola.
+     * 
+     * @param dato El dato a encolar.
+     */
     public void enColar (Object dato) {
         Nodo pNew = new Nodo (dato);
         if (this.colaVacia()) {
@@ -61,6 +76,11 @@ public class Cola {
         size++;
     }
     
+     /**
+     * Elimina y retorna el elemento del frente de la cola.
+     * 
+     * @return El dato desencolado.
+     */
     public Object desEncolar(){
         if (this.colaVacia()) {
             Object quitar = this.cabeza.getDato();
@@ -78,12 +98,17 @@ public class Cola {
         }
     }
     
+     /**
+     * Destruye la cola, eliminando todos sus elementos.
+     */
     public void destruir () {
         cabeza = null;
         cola = null;
         size = 0;
     }
-    
+     /**
+     * Lista los elementos de la cola en la consola.
+     */
     public void listar() {
         Nodo aux = cabeza;
         String pila = "COLA:\n";

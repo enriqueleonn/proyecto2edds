@@ -18,21 +18,29 @@ import org.graphstream.ui.view.Viewer;
 import proyecto2edds.Persona;
 
 /**
- *
+ *La clase MostrarAntepasados es una ventana gráfica que visualiza
+ * la genealogía de una lista de antepasados utilizando un grafo.
+ * 
  * @author Enrique León
  */
 public class MostrarAntepasados extends JFrame {
     private Lista antepasados;
     private Viewer visor;
     private ViewPanel panelVista;
-
+    /**
+     * Constructor que inicializa la ventana con la lista de antepasados.
+     * 
+     * @param antepasados La lista de antepasados a mostrar.
+     */
     public MostrarAntepasados(Lista antepasados) {
         this.antepasados = antepasados;
         configurarInterfaz();
         inicializarVisor();
         agregarBotonCerrar();
     }
-
+     /**
+     * Configura la interfaz de la ventana.
+     */
     private void configurarInterfaz() {
         setTitle("Visualizador de Antepasados");
         setSize(800, 600);
@@ -54,7 +62,11 @@ public class MostrarAntepasados extends JFrame {
             add(panelVista, BorderLayout.CENTER);
         }
     }
-
+    /**
+     * Construye el grafo a partir de la lista de antepasados.
+     * 
+     * @param grafo El grafo a construir.
+     */
     private void construirGrafo(Graph grafo) {
         if (antepasados == null || antepasados.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No hay antepasados para mostrar.", "Información", JOptionPane.INFORMATION_MESSAGE);
@@ -90,13 +102,17 @@ public class MostrarAntepasados extends JFrame {
                 "node { text-size: 16px; }" +
                 "edge { size: 2px; }");
     }
-
+    /**
+     * Agrega un botón para cerrar la ventana.
+     */
     private void agregarBotonCerrar() {
         JButton botonCerrar = new JButton("Cerrar");
         botonCerrar.addActionListener(e -> cerrarVentana());
         add(botonCerrar, BorderLayout.SOUTH);
     }
-
+    /**
+     * Cierra la ventana y libera recursos.
+     */
     private void cerrarVentana() {
         if (visor != null) {
             visor.disableAutoLayout();
