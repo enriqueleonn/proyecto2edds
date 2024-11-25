@@ -151,10 +151,10 @@ public class HashTable {
     }
 
     public void mostrarInfo(String id) {
-        Persona persona = (Persona) this.buscar(id); // Buscar el nodo por ID
+        Persona persona = (Persona) this.buscar(id); 
         if (persona != null) {
             JOptionPane.showMessageDialog(null,
-                    persona.toString(), // Utiliza el método toString para mostrar la información
+                    persona.toString(), 
                     "Información de " + persona.getNombre(),
                     JOptionPane.INFORMATION_MESSAGE);
 
