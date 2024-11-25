@@ -116,7 +116,6 @@ public class HashTable {
             if (!tabla[i].isEmpty()) {
                 for (int j = 0; j < tabla[i].getSize(); j++) {
                     Persona personaActual = (Persona) tabla[i].getValor(j);
-
                     if (personaActual.getTitulo() != null) {
                         if (personaActual.getTitulo().contains(titulo)) {
                             resultado.InsertarFinal(personaActual);
@@ -152,10 +151,10 @@ public class HashTable {
     }
 
     public void mostrarInfo(String id) {
-        Persona persona = (Persona) this.buscar(id); // Buscar el nodo por ID
+        Persona persona = (Persona) this.buscar(id); 
         if (persona != null) {
             JOptionPane.showMessageDialog(null,
-                    persona.toString(), // Utiliza el método toString para mostrar la información
+                    persona.toString(), 
                     "Información de " + persona.getNombre(),
                     JOptionPane.INFORMATION_MESSAGE);
 

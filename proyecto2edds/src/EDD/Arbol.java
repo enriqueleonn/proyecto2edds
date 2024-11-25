@@ -55,6 +55,9 @@ public class Arbol {
                 if (personaActual.nombreUnico().equalsIgnoreCase(nombreUnico)) {
                     return nodoActual;
                 }
+                if (personaActual.nombreNumeral().equalsIgnoreCase(nombreUnico)) {
+                    return nodoActual;
+                }
 
                 Nodo temp = nodoActual.getHijos().getpFirst();
                 while (temp != null) {
@@ -176,12 +179,12 @@ public class Arbol {
     }
 
     public void mostrarInfo(String id) {
-        NodoArbol nodo = (NodoArbol) this.buscar(id); // Buscar el nodo por ID
+        NodoArbol nodo = (NodoArbol) this.buscar(id); 
         if (nodo != null) {
             Persona persona = (Persona) nodo.getDato();
             if (persona != null) {
                 JOptionPane.showMessageDialog(null,
-                        persona.toString(), // Utiliza el método toString para mostrar la información
+                        persona.toString(), 
                         "Información de " + persona.getNombre(),
                         JOptionPane.INFORMATION_MESSAGE);
 
@@ -195,4 +198,5 @@ public class Arbol {
         }
 
     }
+
 }

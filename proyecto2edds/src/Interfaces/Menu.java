@@ -115,8 +115,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_buscarNombreActionPerformed
 
     private void buscarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarTituloActionPerformed
-       BuscarTitulo buscarPorTitulo = new BuscarTitulo();
-       this.dispose();
+        BuscarTitulo buscarPorTitulo = new BuscarTitulo();
+        this.dispose();
     }//GEN-LAST:event_buscarTituloActionPerformed
 
     private void listarGeneracionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarGeneracionesActionPerformed
@@ -131,7 +131,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_cargarLinajeActionPerformed
 
     private void antepasadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_antepasadosActionPerformed
-    Antepasados antepasados = new Antepasados();
+        Antepasados antepasados = new Antepasados();
         this.dispose();
     }//GEN-LAST:event_antepasadosActionPerformed
 
