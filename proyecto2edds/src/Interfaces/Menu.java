@@ -46,65 +46,73 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        buscarNombre.setText("Buscar por nombre");
+        buscarNombre.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        buscarNombre.setText("Buscar por Nombre");
         buscarNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarNombreActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+        jPanel1.add(buscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
 
-        buscarTitulo.setText("Buscar por título");
+        buscarTitulo.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        buscarTitulo.setText("Buscar por Título");
         buscarTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarTituloActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
+        jPanel1.add(buscarTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, -1, -1));
 
         nombreLinajeMenu.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         nombreLinajeMenu.setText("Nombre del Linaje");
-        jPanel1.add(nombreLinajeMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 240, -1));
+        jPanel1.add(nombreLinajeMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 240, -1));
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jLabel1.setText("Menu Principal");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 28)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel1.setText("MENÚ PRINCIPAL");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 290, -1));
 
+        listarGeneraciones.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
         listarGeneraciones.setText("Generaciones");
         listarGeneraciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listarGeneracionesActionPerformed(evt);
             }
         });
-        jPanel1.add(listarGeneraciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
+        jPanel1.add(listarGeneraciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
 
-        cargarLinaje.setText("Cargar linaje");
+        cargarLinaje.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        cargarLinaje.setText("Cargar Linaje");
         cargarLinaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cargarLinajeActionPerformed(evt);
             }
         });
-        jPanel1.add(cargarLinaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, -1, -1));
+        jPanel1.add(cargarLinaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, -1));
 
+        antepasados.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
         antepasados.setText("Antepasados");
         antepasados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 antepasadosActionPerformed(evt);
             }
         });
-        jPanel1.add(antepasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
+        jPanel1.add(antepasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, -1, -1));
 
-        verRegistros.setText("Ver registros");
+        verRegistros.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        verRegistros.setText("Ver Registros");
         verRegistros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 verRegistrosActionPerformed(evt);
             }
         });
-        jPanel1.add(verRegistros, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
+        jPanel1.add(verRegistros, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 350));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -49,48 +49,54 @@ public class BuscarTitulo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jLabel1.setText("Buscar por título");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
-        jPanel1.add(inputTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 250, -1));
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 26)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel1.setText("Buscar por Título");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
+        jPanel1.add(inputTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 320, -1));
 
+        buscar.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         buscar.setText("Buscar");
         buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarActionPerformed(evt);
             }
         });
-        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, -1, -1));
+        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, -1, -1));
 
         resultadosStr.setColumns(20);
         resultadosStr.setRows(5);
         jScrollPane1.setViewportView(resultadosStr);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 250, 120));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 300, 130));
 
-        jLabel2.setText("Ingrese el número asociado a la persona ara ver más detalles:");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        jLabel2.setText("Ingrese el número asociado a la persona para ver más detalles:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, -1));
-        jPanel1.add(inputIndice, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 260, -1));
+        jPanel1.add(inputIndice, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 360, -1));
 
+        volver.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         volver.setText("Volver");
         volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverActionPerformed(evt);
             }
         });
-        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, -1, -1));
+        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, -1, -1));
 
+        verDetalles.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         verDetalles.setText("Ver detalles");
         verDetalles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 verDetallesActionPerformed(evt);
             }
         });
-        jPanel1.add(verDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
+        jPanel1.add(verDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 410));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

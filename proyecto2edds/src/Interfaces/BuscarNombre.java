@@ -57,51 +57,58 @@ public class BuscarNombre extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        buscarNombre.setText("buscar");
+        buscarNombre.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        buscarNombre.setText("Buscar");
         buscarNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarNombreActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, -1, -1));
-        jPanel1.add(inputNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 190, -1));
+        jPanel1.add(buscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
+        jPanel1.add(inputNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 300, -1));
 
         resultadoStr.setColumns(20);
         resultadoStr.setRows(5);
         jScrollPane1.setViewportView(resultadoStr);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 280, 120));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 280, 120));
 
+        volver.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         volver.setText("Volver");
         volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverActionPerformed(evt);
             }
         });
-        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, -1, -1));
+        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        jLabel1.setText("Buscar nombre");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 26)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel1.setText("Buscar por Nombre");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel2.setText("Resultados de la búsqueda:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
-        jPanel1.add(inputIndice, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 280, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
+        jPanel1.add(inputIndice, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 280, -1));
 
-        jLabel3.setText("Ingrese el número asociado a la persona para acceder a su info");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        jLabel3.setText("Ingrese el número asociado a la persona para acceder a su información:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
 
+        verDatallePersona.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         verDatallePersona.setText("Ver detalle");
         verDatallePersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 verDatallePersonaActionPerformed(evt);
             }
         });
-        jPanel1.add(verDatallePersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
+        jPanel1.add(verDatallePersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 400));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

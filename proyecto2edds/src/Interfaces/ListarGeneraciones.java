@@ -52,41 +52,46 @@ public class ListarGeneraciones extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jLabel1.setText("Listar generaciones");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 26)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel1.setText("Listar Generaciones");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel2.setText("Seleccione el número asociado a la generación que desea ver:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         numeroGeneracion.setModel(generacionesNums);
-        jPanel1.add(numeroGeneracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 330, -1));
+        jPanel1.add(numeroGeneracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 370, -1));
 
         resultadoStr.setColumns(20);
         resultadoStr.setRows(5);
         jScrollPane1.setViewportView(resultadoStr);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 380, 270));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 380, 280));
 
+        listarGeneracion.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         listarGeneracion.setText("Listar");
         listarGeneracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listarGeneracionActionPerformed(evt);
             }
         });
-        jPanel1.add(listarGeneracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 380, -1));
+        jPanel1.add(listarGeneracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 80, -1));
 
-        volver.setText("volver");
+        volver.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        volver.setText("Volver");
         volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverActionPerformed(evt);
             }
         });
-        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 450, -1, -1));
+        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 500));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
