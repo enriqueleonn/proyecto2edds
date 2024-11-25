@@ -69,7 +69,7 @@ public class Menu extends javax.swing.JFrame {
 
         nombreLinajeMenu.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         nombreLinajeMenu.setText("Nombre del Linaje");
-        jPanel1.add(nombreLinajeMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 240, -1));
+        jPanel1.add(nombreLinajeMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 240, -1));
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 28)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 102));
@@ -92,7 +92,7 @@ public class Menu extends javax.swing.JFrame {
                 cargarLinajeActionPerformed(evt);
             }
         });
-        jPanel1.add(cargarLinaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, -1));
+        jPanel1.add(cargarLinaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, -1, -1));
 
         antepasados.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
         antepasados.setText("Antepasados");

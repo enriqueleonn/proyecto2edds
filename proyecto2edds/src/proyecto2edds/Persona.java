@@ -147,11 +147,10 @@ public class Persona {
         sb.append(", \nMote=").append(mote);
         sb.append(", \nTitulo=").append(titulo);
         sb.append(", \nEsposa=").append(esposa);
-        sb.append(", \nColorOjos=").append(colorOjos);
-        sb.append(", \nColorCabello=").append(colorCabello);
-        sb.append(", \nComentVida=").append(comentVida);
-        sb.append(", \nComentMuerte=").append(comentMuerte);
-
+        sb.append(", \nColor de Ojos=").append(colorOjos);
+        sb.append(", \nColor de Cabello=").append(colorCabello);
+        sb.append(", \nComentarios de su Vida=").append(comentVida);
+        sb.append(", \nComentarios de su Muerte=").append(comentMuerte);
         return sb.toString();
     }
 

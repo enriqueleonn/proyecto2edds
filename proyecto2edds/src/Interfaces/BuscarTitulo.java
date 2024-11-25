@@ -129,16 +129,16 @@ public class BuscarTitulo extends javax.swing.JFrame {
 
                 resultadosStr.setText(resultado);
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontraron coincidencia con el titulo buscado.");
+                JOptionPane.showMessageDialog(null, "No se encontró coincidencia con el título buscado.");
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "El input no puede estar vacio");
+            JOptionPane.showMessageDialog(null, "El input no puede estar vacío");
         }
     }//GEN-LAST:event_buscarActionPerformed
 
     private void verDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verDetallesActionPerformed
-       if (resultadoBusqueda != null || resultadoBusqueda[0] != null) {
+       if (resultadoBusqueda != null && resultadoBusqueda[0] != null) {
             if (!inputIndice.getText().isEmpty() && !"".equals(inputIndice.getText())) {
                 String indiceStr = inputIndice.getText();
                 if (validar.ValidarNumeros(indiceStr) != -1) {
@@ -147,18 +147,17 @@ public class BuscarTitulo extends javax.swing.JFrame {
                         String clave = resultadoBusqueda[indice];
                         JOptionPane.showMessageDialog(null, arbolGenealogico.getHashTable().buscar(clave));
                     } else {
-                        JOptionPane.showMessageDialog(null, "El numero esta fuera del indice");
+                        JOptionPane.showMessageDialog(null, "El número está fuera del índice");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Debe ingresar un numero.");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar un número.");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "El input no puede estar vacio");
+                JOptionPane.showMessageDialog(null, "El input no puede estar vacío");
             }
         }else{
             JOptionPane.showMessageDialog(null, "No hay resultados para ver detalles");
-        }
-                            
+        }                    
     }//GEN-LAST:event_verDetallesActionPerformed
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed

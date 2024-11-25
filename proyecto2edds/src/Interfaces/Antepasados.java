@@ -141,12 +141,12 @@ public class Antepasados extends javax.swing.JFrame {
 
                 resultadosBusqueda.setText(resultado);
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontraron coincidencia con el nombre buscado");
+                JOptionPane.showMessageDialog(null, "No se encontró coincidencia con el nombre buscado");
             }
 
             inputNombre.setText("");
         } else {
-            JOptionPane.showMessageDialog(null, "El input no puede estar vacio");
+            JOptionPane.showMessageDialog(null, "El input no puede estar vacío");
         }
 
 
@@ -165,25 +165,22 @@ public class Antepasados extends javax.swing.JFrame {
                         String clave = resultadoBusqueda[indice];
 
                         Lista antepasados = arbolGenealogico.getArbol().antepasados(arbolGenealogico.getArbol().buscar(clave));
-
-                        System.setProperty("org.graphstream.ui", "swing");
-                        MostrarAntepasados mostrar = new MostrarAntepasados(antepasados);
-                        mostrar.setVisible(true);
-
-                        this.dispose();
-                        for (int i = 0; i < antepasados.getSize(); i++) {
-                            Persona persona = (Persona) antepasados.getValor(i);
-                            System.out.println(persona.toString() + "\n");
+                        if (!antepasados.isEmpty()) {
+                            System.setProperty("org.graphstream.ui", "swing");
+                            MostrarAntepasados mostrar = new MostrarAntepasados(antepasados);
+                            mostrar.setVisible(true);
+                            this.dispose();
                         }
+                        
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "El numero esta fuera del indice");
+                        JOptionPane.showMessageDialog(null, "El número esta fuera del indice");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Debe ingresar un numero.");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar un número.");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "El input no puede estar vacio");
+                JOptionPane.showMessageDialog(null, "El input no puede estar vacío");
             }
         }
     }//GEN-LAST:event_mostrarAntepasadosActionPerformed

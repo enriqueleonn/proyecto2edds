@@ -145,12 +145,12 @@ public class BuscarNombre extends javax.swing.JFrame {
 
                 resultadoStr.setText(resultado);
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontraron coincidencia con el nombre buscado");
+                JOptionPane.showMessageDialog(null, "No se encontró coincidencia con el nombre buscado");
             }
 
             inputNombre.setText("");
         } else {
-            JOptionPane.showMessageDialog(null, "El input no puede estar vacio");
+            JOptionPane.showMessageDialog(null, "El input no puede estar vacío");
         }
 
 
@@ -183,13 +183,13 @@ public class BuscarNombre extends javax.swing.JFrame {
                         this.dispose();
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "El numero esta fuera del indice");
+                        JOptionPane.showMessageDialog(null, "El número está fuera del índice");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Debe ingresar un numero.");
+                    JOptionPane.showMessageDialog(null, "Debe ingresar un número.");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "El input no puede estar vacio");
+                JOptionPane.showMessageDialog(null, "El input no puede estar vacío");
             }
         }
                 

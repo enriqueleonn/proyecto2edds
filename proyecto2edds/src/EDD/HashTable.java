@@ -76,13 +76,13 @@ public class HashTable {
                 for (int j = 0; j < tabla[i].getSize(); j++) {
                     Persona personaActual = (Persona) tabla[i].getValor(j);
                     if (personaActual.getMote() != null) {
-                        if (personaActual.getMote().contains(nombre)) {
+                        if (personaActual.getMote().toLowerCase().contains(nombre.toLowerCase())) {
                             resultado.InsertarFinal(personaActual);
-                        } else if (personaActual.getNombre().contains(nombre)) {
+                        } else if (personaActual.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
                             resultado.InsertarFinal(personaActual);
                         }
                     } else {
-                        if (personaActual.getNombre().contains(nombre)) {
+                        if (personaActual.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
                             resultado.InsertarFinal(personaActual);
                         }
                     }
@@ -117,7 +117,7 @@ public class HashTable {
                 for (int j = 0; j < tabla[i].getSize(); j++) {
                     Persona personaActual = (Persona) tabla[i].getValor(j);
                     if (personaActual.getTitulo() != null) {
-                        if (personaActual.getTitulo().contains(titulo)) {
+                        if (personaActual.getTitulo().toLowerCase().contains(titulo.toLowerCase())) {
                             resultado.InsertarFinal(personaActual);
                         }
                     }
@@ -141,7 +141,7 @@ public class HashTable {
                 tablaStr += "Indice " + i + ": ";
                 for (int j = 0; j < tabla[i].getSize(); j++) {
                     Persona persona = (Persona) tabla[i].getValor(j);
-                    tablaStr += persona.nombreUnico() + "'-> ";
+                    tablaStr += persona.nombreUnico() + "-> ";
                 }
 
                 tablaStr += "null" + "\n";
@@ -165,5 +165,4 @@ public class HashTable {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-
 }
