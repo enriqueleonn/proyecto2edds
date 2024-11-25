@@ -30,8 +30,8 @@ public class Cargar {
         this.arbol = new Arbol();
         this.hashTable = new HashTable(100);
         this.nombreLinaje = null;
-        this.personasRepetidas=false;
-        this.padresNoExisten=false;
+        this.personasRepetidas = false;
+        this.padresNoExisten = false;
     }
 
     public Arbol getArbol() {
@@ -84,7 +84,7 @@ public class Cargar {
             JsonArray miembrosLinaje = json.getAsJsonArray(nombreLinaje);
             for (JsonElement miembro : miembrosLinaje) {
                 JsonObject miembroJson = miembro.getAsJsonObject();
-                agregarMiembroHashTable(miembroJson);
+                agregarMiembrosHashTable(miembroJson);
             }
         }
 
@@ -98,8 +98,6 @@ public class Cargar {
         }
 
     }
-    
-    
 
     private void agregarMiembrosArbol(JsonObject miembroJson) {
         String nombre = miembroJson.keySet().iterator().next();
@@ -107,7 +105,7 @@ public class Cargar {
 
         Persona nuevoMiembro = new Persona(nombre);
         colocarAtributos(nuevoMiembro, atributosMiembro);
-        
+
         if (this.arbol.buscar(nuevoMiembro.nombreUnico()) == null) {
             if (arbol.isEmpty()) {
                 arbol.iniciarlizarRaiz(nuevoMiembro);
@@ -129,19 +127,18 @@ public class Cargar {
                     }
                 }
             }
-        }else{
-           this.setPersonasRepetidas(true);
+        } else {
+            this.setPersonasRepetidas(true);
         }
     }
 
-    private void agregarMiembroHashTable(JsonObject miembroJson) {
+    private void agregarMiembrosHashTable(JsonObject miembroJson) {
         String nombre = miembroJson.keySet().iterator().next();
         JsonArray atributosMiembro = miembroJson.getAsJsonArray(nombre);
 
         Persona nuevoMiembro = new Persona(nombre);
         colocarAtributos(nuevoMiembro, atributosMiembro);
         this.hashTable.insertar(nuevoMiembro.nombreUnico(), nuevoMiembro);
-
     }
 
     private void colocarAtributos(Persona nuevoMiembro, JsonArray atributosMiembro) {
@@ -172,4 +169,5 @@ public class Cargar {
             }
         }
     }
+
 }

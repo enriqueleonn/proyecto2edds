@@ -6,6 +6,7 @@ package Interfaces;
 
 import EDD.Arbol;
 import EDD.Lista;
+import Funciones.MostrarArbol;
 import Funciones.Validar;
 import static Interfaces.Inicio.arbolGenealogico;
 import javax.swing.JOptionPane;
@@ -19,7 +20,7 @@ public class BuscarNombre extends javax.swing.JFrame {
 
     private Validar validar = new Validar();
     private String[] resultadoBusqueda;
-    
+
     public BuscarNombre() {
         initComponents();
         this.setVisible(true);
@@ -110,61 +111,81 @@ public class BuscarNombre extends javax.swing.JFrame {
     }//GEN-LAST:event_formHierarchyChanged
 
     private void buscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarNombreActionPerformed
-        String nombre = inputNombre.getText();
-        Lista resultados = arbolGenealogico.getHashTable().buscarNombre(nombre);
+        if (!inputNombre.getText().isEmpty()) {
+            String nombre = inputNombre.getText();
+            Lista resultados = arbolGenealogico.getHashTable().buscarNombre(nombre);
 
-        if (!resultados.isEmpty()) {
-            String[] nombresResultados = new String[resultados.getSize()];
+            if (!resultados.isEmpty()) {
+                String[] nombresResultados = new String[resultados.getSize()];
 
-            for (int i = 0; i < resultados.getSize(); i++) {
-                Persona persona = (Persona) resultados.getValor(i);
-                if (persona.getMote() != null) {
-                    nombresResultados[i] = persona.getMote();
-                } else {
-                    nombresResultados[i] = persona.getNombre() + " " + persona.getNumeral();
+                for (int i = 0; i < resultados.getSize(); i++) {
+                    Persona persona = (Persona) resultados.getValor(i);
+                    if (persona.getMote() != null) {
+                        nombresResultados[i] = persona.getMote();
+                    } else {
+                        nombresResultados[i] = persona.getNombre() + " " + persona.getNumeral();
+                    }
                 }
+
+                resultadoBusqueda = nombresResultados;
+
+                String resultado = "";
+
+                for (int i = 0; i < nombresResultados.length; i++) {
+                    int indice = i + 1;
+                    resultado += indice + ": " + nombresResultados[i] + "\n";
+                }
+
+                resultadoStr.setText(resultado);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontraron coincidencia con el nombre buscado");
             }
 
-            resultadoBusqueda = nombresResultados;
-
-            String resultado = "";
-
-            for (int i = 0; i < nombresResultados.length; i++) {
-                int indice = i + 1;
-                resultado += indice + ": " + nombresResultados[i] + "\n";
-            }
-
-            resultadoStr.setText(resultado);
-        }else{
-            JOptionPane.showMessageDialog(null, "No se encontraron coincidencia con el nombre buscado");
+            inputNombre.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "El input no puede estar vacio");
         }
-        
-        inputNombre.setText("");
+
+
     }//GEN-LAST:event_buscarNombreActionPerformed
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
-         Menu menu = new Menu();
-         this.dispose();
+        Menu menu = new Menu();
+        this.dispose();
     }//GEN-LAST:event_volverActionPerformed
 
     private void verDatallePersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verDatallePersonaActionPerformed
-        String indiceStr = inputIndice.getText();
-        if (validar.ValidarNumeros(indiceStr) != -1) {
-            int indice = validar.ValidarNumeros(indiceStr) - 1;
-            if (validar.validarIndice(resultadoBusqueda.length - 1, 0, indice)) {
-                String clave = resultadoBusqueda[indice];
-                
-                Arbol descendencia = new Arbol();
-                
-                descendencia.setRoot(arbolGenealogico.getArbol().buscar(clave));
-                descendencia.mostrarPorNiveles();
-                
-            } else {
-                JOptionPane.showMessageDialog(null, "El numero esta fuera del indice");
-            }
+       if (resultadoBusqueda == null || resultadoBusqueda[0] == null) {
+            JOptionPane.showMessageDialog(null, "No hay resultados para ver detalles");
         } else {
-            JOptionPane.showMessageDialog(null, "Debe ingresar un numero.");
+            if (!inputIndice.getText().isEmpty() && !"".equals(inputIndice.getText())) {
+                String indiceStr = inputIndice.getText();
+                if (validar.ValidarNumeros(indiceStr) != -1) {
+                    int indice = validar.ValidarNumeros(indiceStr) - 1;
+                    if (validar.validarIndice(resultadoBusqueda.length - 1, 0, indice)) {
+                        String clave = resultadoBusqueda[indice];
+
+                        Arbol descendencia = new Arbol();
+
+                        descendencia.setRoot(arbolGenealogico.getArbol().buscar(clave));
+                        
+                        System.setProperty("org.graphstream.ui", "swing");
+
+                        MostrarArbol mostrar = new MostrarArbol(descendencia);
+                        mostrar.setVisible(true);
+                        this.dispose();
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El numero esta fuera del indice");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debe ingresar un numero.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El input no puede estar vacio");
+            }
         }
+                
     }//GEN-LAST:event_verDatallePersonaActionPerformed
 
     /**
